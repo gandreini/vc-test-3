@@ -1,0 +1,23 @@
+{
+  "active": false,
+  "id": "15",
+  "name": "New WF 5",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "df1ae4f6-cbec-4e65-bfb1-8434418fa19e",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        1140,
+        580
+      ]
+    }
+  ],
+  "connections": {},
+  "settings": {},
+  "triggerCount": 0,
+  "owner": "giulio+2@n8n.io",
+  "versionId": "1074e896-3dd6-4b88-9ee4-4bb6bb667658"
+}
