@@ -1,0 +1,54 @@
+{
+  "active": false,
+  "id": "6",
+  "name": "TOTP",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "a7eb0149-10e8-4345-a91e-58220cc89fc7",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        580,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "additionalOptions": {}
+      },
+      "id": "6c4ebffa-662c-44da-897c-c90dc05e6654",
+      "name": "TOTP",
+      "type": "n8n-nodes-base.totp",
+      "typeVersion": 1,
+      "position": [
+        800,
+        300
+      ],
+      "credentials": {
+        "totpApi": {
+          "id": "7",
+          "name": "TOTP account"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "When clicking \"Execute Workflow\"": {
+      "main": [
+        [
+          {
+            "node": "TOTP",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {},
+  "triggerCount": 0,
+  "owner": "g.andreini@gmail.com",
+  "versionId": "86b5feb2-50c7-4da7-9523-3893c1c04698"
+}
