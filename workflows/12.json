@@ -13,11 +13,36 @@
         1140,
         580
       ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "cee3f95d-04bd-4d74-b43b-2d31bd20c19d",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1360,
+        580
+      ]
     }
   ],
-  "connections": {},
+  "connections": {
+    "When clicking \"Execute Workflow\"": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
   "settings": {},
   "triggerCount": 0,
   "owner": "giulio+2@n8n.io",
-  "versionId": "06c34bbe-537d-423b-9059-1bd67ee57dcf"
+  "versionId": "a4dd613c-d686-4cd4-ae7f-01cd8a840b84"
 }
