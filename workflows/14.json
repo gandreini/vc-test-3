@@ -1,0 +1,11 @@
+{
+  "active": false,
+  "id": "14",
+  "name": "My workflow",
+  "nodes": [],
+  "connections": {},
+  "settings": {},
+  "triggerCount": 0,
+  "owner": "giulio+2@n8n.io",
+  "versionId": "54cf682f-88db-4f74-8626-b66b4d7025a4"
+}
