@@ -1,0 +1,78 @@
+{
+  "active": false,
+  "id": "6",
+  "name": "TOTP",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "a7eb0149-10e8-4345-a91e-58220cc89fc7",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        580,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "6c4ebffa-662c-44da-897c-c90dc05e6654",
+      "name": "TOTP",
+      "type": "n8n-nodes-base.totp",
+      "typeVersion": 1,
+      "position": [
+        800,
+        300
+      ],
+      "credentials": {
+        "totpApi": {
+          "id": "7",
+          "name": "TOTP account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  item.json.myNewField = 1;\n}\n\nreturn $input.all();"
+      },
+      "id": "1707b655-8be1-4ce8-ad1b-cc3d08ce46e2",
+      "name": "Code",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [
+        1020,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "When clicking \"Execute Workflow\"": {
+      "main": [
+        [
+          {
+            "node": "TOTP",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "TOTP": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {},
+  "triggerCount": 0,
+  "owner": "g.andreini@gmail.com",
+  "versionId": "c919ec69-f014-4a6e-8eee-15aa007c5705"
+}

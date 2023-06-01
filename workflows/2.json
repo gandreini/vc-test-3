@@ -1,0 +1,104 @@
+{
+  "active": false,
+  "id": "2",
+  "name": "MySql",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "493bddb5-a5da-4ffc-b6b1-9264d6c0b9df",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        340,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "return [\n  {\n    customer_id: 52472,\n    customer_salary: 42000,\n    marketing_notes: \"Vestibulum rutrum, mi nec elementum vehicula, eros quam gravida nisl, id fringilla neque ante vel mi.\",\n    customer_location: \"Paris\",\n    customer_old: 42,\n    name: \"John Smith\",\n    email: \"john.smith@example.com\"\n  },\n  {\n    customer_id: 52473,\n    customer_salary: 38500,\n    marketing_notes: \"Vestibulum rutrum, mi nec elementum vehicula, eros quam gravida nisl, id fringilla neque ante vel mi.\",\n    customer_location: \"London\",\n    customer_old: 48,\n    name: \"Jane Doe\",\n    email: \"jane.doe@example.com\"\n  },\n  {\n    customer_id: 52474,\n    customer_salary: 28900,\n    marketing_notes: \"Vestibulum rutrum, mi nec elementum vehicula, eros quam gravida nisl, id fringilla neque ante vel mi.\",\n    customer_location: \"Berlin\",\n    customer_old: 38,\n    name: \"Bob Johnson\",\n    email: \"bob.johnson@example.com\"\n  },\n  {\n    customer_id: 52475,\n    customer_salary: 68400,\n    marketing_notes: \"Nam eget dui.\",\n    customer_location: \"Manchester\",\n    customer_old: 32,\n    name: \"Alice Brown\",\n    email: \"alice.brown@example.com\"\n  },\n  {\n    customer_id: 52476,\n    customer_salary: 66000,\n    marketing_notes: \"Vivamus elementum semper nisi. Praesent adipiscing.\",\n    customer_location: \"Rome\",\n    customer_old: 44,\n    name: \"David Lee\",\n    email: \"david.lee@example.com\"\n  },\n  {\n    customer_id: 52477,\n    customer_salary: 52000,\n    marketing_notes: \"Phasellus leo dolor, tempus non, auctor et, hendrerit quis, nisi. Vestibulum volutpat pretium libero.\",\n    customer_location: \"Rome\",\n    customer_old: 51,\n    name: \"Sarah Kim\",\n    email: \"sarah.kim@example.com\"\n  },\n  {\n    customer_id: 52478,\n    customer_salary: 59000,\n    marketing_notes: \"Vestibulum dapibus nunc ac augue. Ut leo.\",\n    customer_location: \"Lucca\",\n    customer_old: 29,\n    name: \"Peter Wang\",\n    email: \"peter.wang@example.com\"\n  },\n  {\n    customer_id: 52479,\n    customer_salary: 62000,\n    marketing_notes: \"Pellentesque egestas, neque sit amet convallis pulvinar, justo nulla eleifend augue, ac auctor orci leo non est. Fusce vulputate eleifend sapien. Sed magna purus, fermentum eu, tincidunt eu, varius ut, felis.\",\n    customer_location: \"Lucca\",\n    customer_old: 18,\n    name: \"Emily Chen\",\n    email: \"emily.chen@example.com\"\n  }\n]"
+      },
+      "id": "91c8a17d-4660-4007-8b27-d9925bf42f08",
+      "name": "Code",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [
+        560,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "upsert",
+        "table": {
+          "__rl": true,
+          "value": "users",
+          "mode": "list",
+          "cachedResultName": "users"
+        },
+        "dataMode": "defineBelow",
+        "columnToMatchOn": "name",
+        "valueToMatchOn": "={{ $json.name }}",
+        "valuesToSend": {
+          "values": [
+            {
+              "column": "email",
+              "value": "={{ $json.email }}"
+            },
+            {
+              "column": "age",
+              "value": "={{ $json.customer_old }}"
+            }
+          ]
+        },
+        "options": {
+          "connectionTimeoutMillis": 30,
+          "connectionLimit": 10
+        }
+      },
+      "id": "ef7149de-718a-4899-a948-d96977e31af8",
+      "name": "MySQL",
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2,
+      "position": [
+        780,
+        400
+      ],
+      "executeOnce": false,
+      "credentials": {
+        "mySql": {
+          "id": "6",
+          "name": "MySQL account"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "When clicking \"Execute Workflow\"": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "MySQL",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {},
+  "triggerCount": 0,
+  "owner": "g.andreini@gmail.com",
+  "versionId": "6beb7896-b5da-4b41-9b77-f7aa939658dd"
+}

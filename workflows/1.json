@@ -1,0 +1,163 @@
+{
+  "active": false,
+  "id": "1",
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "content": "## 👇 Get started faster \nLightning tour of the key concepts [4 min] \n\n[![n8n quickstart video](/static/quickstart_thumbnail.png#full-width)](https://www.youtube.com/watch?v=1MwSoB0gnM4)",
+        "height": 320,
+        "width": 380
+      },
+      "id": "42054445-0a66-4ff6-9787-e88ac8fa6813",
+      "name": "_QUICKSTART_NOTE_",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        50,
+        250
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "7985107f-06e4-4631-aa4d-21e77538b032",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        500,
+        360
+      ]
+    },
+    {
+      "parameters": {
+        "fileSelector": "/Users/giulioandreini/Desktop/_temp/bot.jpg",
+        "dataPropertyName": "file"
+      },
+      "id": "d51a35ea-00a4-4326-b8f0-5bd476e9b26d",
+      "name": "Read Binary Files",
+      "type": "n8n-nodes-base.readBinaryFiles",
+      "typeVersion": 1,
+      "position": [
+        780,
+        360
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "limit": 10,
+        "simple": false,
+        "filters": {
+          "q": "has:attachment AND filename:jpg"
+        },
+        "options": {}
+      },
+      "id": "6d454a8f-e3d7-4f82-8784-d2391f4377fb",
+      "name": "Gmail",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2,
+      "position": [
+        980,
+        360
+      ],
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "1",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "return [{\"attachments\": [\n      {\n        \"file\": {\n          \"file_name\": \"my-photo.jpg\",\n          \"file_type\": \"image/jpeg\",\n          \"file_data\": \"989hwef987we6fnew7rf7n...\",\n          \"file_size\": 171000\n        }\n      },\n      {\n        \"file\": {\n          \"file_name\": \"sunset.jpg\",\n          \"file_type\": \"image/jpeg\",\n          \"file_data\": \"fg768ew7r5rb7ew5f675vw4r2...\",\n          \"file_size\": 215000\n        }\n      }\n    ] }];"
+      },
+      "id": "8ad5988d-c24d-4096-9e2b-84bfc5de44f7",
+      "name": "Code",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [
+        1180,
+        360
+      ]
+    },
+    {
+      "parameters": {
+        "options": {
+          "attachmentsUi": {
+            "attachmentsBinary": [
+              {
+                "property": "={{ $json.attachments[1].file.file_name }}"
+              },
+              {}
+            ]
+          }
+        }
+      },
+      "id": "4a2d4534-d3f2-4674-b14f-28d140b40ab2",
+      "name": "Gmail1",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2,
+      "position": [
+        1400,
+        360
+      ],
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "1",
+          "name": "Gmail account"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "When clicking \"Execute Workflow\"": {
+      "main": [
+        [
+          {
+            "node": "Read Binary Files",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read Binary Files": {
+      "main": [
+        [
+          {
+            "node": "Gmail",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gmail": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Gmail1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {},
+  "triggerCount": 0,
+  "owner": "g.andreini@gmail.com",
+  "versionId": "d3705692-c9a7-4bcd-9442-3b62aed96d0b"
+}
