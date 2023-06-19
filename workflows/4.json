@@ -1,0 +1,79 @@
+{
+  "active": false,
+  "id": "4",
+  "name": "Lot of executions",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "seconds",
+              "secondsInterval": 2
+            }
+          ]
+        }
+      },
+      "id": "128afda5-c5e1-4ca5-a7b7-dee952ee0c30",
+      "name": "Schedule Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1,
+      "position": [
+        920,
+        580
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "return [{something: true}];"
+      },
+      "id": "591fb5ab-232e-4c2c-b742-d4b0553df3f9",
+      "name": "Code",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [
+        1140,
+        580
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "91a15bc3-fe29-40f4-9200-4ea0d0d56967",
+      "name": "No Operation, do nothing",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        1360,
+        580
+      ]
+    }
+  ],
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "No Operation, do nothing",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {},
+  "triggerCount": 1,
+  "owner": "giulio+2@n8n.io",
+  "versionId": "6d877239-4bc4-4def-8358-8c938f21babf"
+}

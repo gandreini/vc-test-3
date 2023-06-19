@@ -1,0 +1,81 @@
+{
+  "active": false,
+  "id": "5",
+  "name": "My workflow 3",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "37f875a1-37f5-4c5c-ab64-7d209a427013",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        900,
+        580
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "options": {
+          "queryBatching": "single"
+        }
+      },
+      "id": "234306b0-b6bd-4a27-8d37-9900af3d34e7",
+      "name": "Postgres",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2,
+      "position": [
+        1380,
+        580
+      ],
+      "credentials": {
+        "postgres": {
+          "id": "2",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "return [\n  {\n    id: 52472,\n    first_name: \"Giulio\",\n    last_name: \"Andreini\",\n    hero_name: \"Superman\"\n  },\n  {\n    id: 52473,\n    first_name: \"Giorgio\",\n    last_name: \"Andreini\",\n    hero_name: \"Superman\"\n  },\n  {\n    id: 52474,\n    first_name: \"Arturo\",\n    last_name: \"Andreini\",\n    hero_name: \"Superman\"\n  },\n  {\n    id: 52475,\n    first_name: \"Sauro\",\n    last_name: \"Andreini\",\n    hero_name: \"Superman\"\n  },\n  {\n    id: 52472,\n    first_name: \"Giulio\",\n    last_name: \"Andreini\",\n    hero_name: \"Superman\"\n  },\n  {\n    id: 52473,\n    first_name: \"Giorgio\",\n    last_name: \"Andreini\",\n    hero_name: \"Superman\"\n  },\n  {\n    id: 52474,\n    first_name: \"Arturo\",\n    last_name: \"Andreini\",\n    hero_name: \"Superman\"\n  },\n  {\n    id: 52475,\n    first_name: \"Sauro\",\n    last_name: \"Andreini\",\n    hero_name: \"Superman\"\n  },\n  {\n    id: 52472,\n    first_name: \"Giulio\",\n    last_name: \"Andreini\",\n    hero_name: \"Superman\"\n  },\n  {\n    id: 52473,\n    first_name: \"Giorgio\",\n    last_name: \"Andreini\",\n    hero_name: \"Superman\"\n  },\n  {\n    id: 52474,\n    first_name: \"Arturo\",\n    last_name: \"Andreini\",\n    hero_name: \"Superman\"\n  },\n  {\n    id: 52475,\n    first_name: \"Sauro\",\n    last_name: \"Andreini\",\n    hero_name: \"Superman\"\n  },\n  {\n    id: 52472,\n    first_name: \"Giulio\",\n    last_name: \"Andreini\",\n    hero_name: \"Superman\"\n  },\n  {\n    id: 52473,\n    first_name: \"Giorgio\",\n    last_name: \"Andreini\",\n    hero_name: \"Superman\"\n  },\n  {\n    id: 52474,\n    first_name: \"Arturo\",\n    last_name: \"Andreini\",\n    hero_name: \"Superman\"\n  },\n  {\n    id: 52475,\n    first_name: \"Sauro\",\n    last_name: \"Andreini\",\n    hero_name: \"Superman\"\n  }\n];"
+      },
+      "id": "da88f0b5-ed77-429f-9a76-f3b7f104ca34",
+      "name": "Code",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [
+        1140,
+        580
+      ]
+    }
+  ],
+  "connections": {
+    "When clicking \"Execute Workflow\"": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Postgres",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {},
+  "triggerCount": 0,
+  "owner": "giulio+2@n8n.io",
+  "versionId": "2023e2fd-7f44-4e80-a0c0-3527ef110fcf"
+}
