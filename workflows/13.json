@@ -1,0 +1,48 @@
+{
+  "active": false,
+  "id": "13",
+  "name": "New WF3",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "a9d528af-78ac-49ef-b47d-2618d74793b6",
+      "name": "When clicking \"Execute Workflow\"",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        1140,
+        580
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  item.json.myNewField = 1;\n}\n\nreturn $input.all();"
+      },
+      "id": "8d15eb26-0ea1-442a-9a05-984e71ce43c3",
+      "name": "Code",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [
+        1360,
+        580
+      ]
+    }
+  ],
+  "connections": {
+    "When clicking \"Execute Workflow\"": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {},
+  "triggerCount": 0,
+  "owner": "giulio+2@n8n.io",
+  "versionId": "f7255c63-5e04-4ad1-899b-fec26e96ae45"
+}
